@@ -1,0 +1,468 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg: #071324;
+    --bg-deep: #030a15;
+    --ink: #f2f2f0;
+    --ink-dim: #8b98ab;
+    --accent: #ffb454;
+    --line: #24334d;
+    --line-soft: #182640;
+    --panel: rgba(255, 255, 255, 0.03);
+    --bar: rgba(11, 37, 69, 0.85);
+    --purple: #9b6dff;
+    --purple-dim: #6d4bb8;
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* Tema claro: se activa cuando <html> tiene data-theme="light" */
+[data-theme="light"] {
+    --bg: #f2f0ea;
+    --bg-deep: #e6e2d8;
+    --ink: #171410;
+    --ink-dim: #5c5648;
+    --accent: #c7771c;
+    --line: #d8d2c2;
+    --line-soft: #e6e2d8;
+    --panel: rgba(0, 0, 0, 0.03);
+    --bar: rgba(242, 240, 234, 0.85);
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+}
+
+ul {
+    list-style: none;
+}
+
+/* HEADER / NAV */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 22px 5vw;
+    background: var(--bar);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+nav ul {
+    display: flex;
+    gap: 32px;
+}
+
+nav a {
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* En modo claro, el hover del nav es morado en vez del acento normal */
+[data-theme="light"] nav a:hover {
+    color: var(--purple);
+    border-color: var(--purple);
+}
+
+/* ---- Controles: tema e idioma ---- */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-left: 32px;
+}
+
+#theme-toggle {
+    background: transparent;
+    border: none;
+    color: var(--ink);
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#theme-toggle:hover {
+    background: var(--purple);
+    color: #fff;
+}
+
+#lang-select {
+    background: transparent;
+    border: none;
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    padding: 8px 10px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+#lang-select:hover {
+    background: var(--purple);
+    color: #fff;
+}
+
+#lang-select option {
+    background: var(--bg);
+    color: var(--ink);
+}
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5vw;
+}
+
+.welcome {
+    font-family: var(--font-display);
+    font-size: 7rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 64px;
+}
+
+.profile {
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.name {
+    font-size: clamp(40px, 8vw, 96px);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+}
+
+.name .stroke {
+    color: var(--ink);
+}
+
+.rol {
+    margin-top: 30px;
+    font-size: 20px;
+    color: var(--accent);
+}
+
+.rol .dash {
+    border-left: 2px solid var(--accent);
+    padding-left: 14px;
+}
+
+/* SECCIONES (general) */
+section {
+    padding: 100px 5vw;
+}
+
+.section-head {
+    margin-bottom: 48px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line-soft);
+}
+
+.section-head h2 {
+    font-size: 4rem;
+}
+
+/* ABOUT */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.about-text p {
+    color: var(--ink-dim);
+    max-width: 65ch;
+    margin-bottom: 16px;
+    font-size: 16px;
+}
+
+.about-photo {
+    position: relative;
+    border: 1px solid var(--line);
+    padding: 12px;
+    max-width: 450px;
+}
+
+.about-photo .br-tl {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 16px;
+    height: 16px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+}
+
+.about-photo img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    filter: grayscale(20%);
+}
+
+/* SKILLS */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 24px;
+}
+
+.skill-card {
+    background: var(--bg);
+    padding: 26px;
+    border: 1px solid var(--line-soft);
+    border-radius: 15px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.skill-card:hover {
+    background: var(--panel);
+    border-color: var(--accent);
+}
+
+.skill-card .num {
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.skill-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.skill-card p {
+    font-size: 13.5px;
+    color: var(--ink-dim);
+}
+
+/* PROJECTS */
+.projects {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.panel {
+    position: relative;
+    border: 1px solid var(--line);
+    background: var(--panel);
+}
+
+.panel .br-tl {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 16px;
+    height: 16px;
+    border-top: 2px solid var(--accent);
+    border-left: 2px solid var(--accent);
+}
+
+.project {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: 24px;
+    align-items: center;
+    padding: 28px 32px;
+}
+
+.project .idx {
+    font-size: 13px;
+    color: var(--accent);
+}
+
+.project h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.project p {
+    font-size: 14px;
+    color: var(--ink-dim);
+    max-width: 55ch;
+}
+
+.stack {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.stack span {
+    font-size: 10.5px;
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+    padding: 4px 9px;
+}
+
+.project-link {
+    font-size: 12px;
+    color: var(--ink-dim);
+    border: 1px solid var(--purple);
+    padding: 10px 18px;
+    white-space: nowrap;
+    transition: color 0.2s ease, background 0.2s ease;
+}
+
+.project-link:hover {
+    color: #fff;
+    background: var(--purple);
+}
+
+/* CONTACT */
+.contact-panel {
+    text-align: center;
+    padding: 70px 30px;
+}
+
+.contact-panel h2 {
+    font-size: clamp(28px, 5vw, 48px);
+    max-width: 18ch;
+    margin: 0 auto 28px;
+}
+
+.big-mail {
+    display: inline-block;
+    font-size: clamp(16px, 3vw, 22px);
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    margin-bottom: 30px;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 26px;
+    flex-wrap: wrap;
+}
+
+.contact-links a {
+    font-size: 13px;
+    color: var(--ink-dim);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-links a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* FOOTER */
+footer {
+    padding: 30px 5vw;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-dim);
+    border-top: 1px solid var(--line-soft);
+}
+
+/* Reveal on scroll (usado por script.js) */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Nav link activo (usado por script.js) */
+nav a.active {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+    nav ul {
+        display: none;
+    }
+
+    .controls {
+        margin-left: auto;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+
+    .project-link {
+        width: fit-content;
+    }
+
+    section {
+        padding: 70px 6vw;
+    }
+}
