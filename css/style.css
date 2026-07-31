@@ -134,14 +134,10 @@ nav a:hover {
     transition: background 0.2s ease;
 }
 
-#theme-toggle:hover {
-    background: var(--purple);
-    color: #fff;
-}
-
 #lang-select {
     background: transparent;
     border: none;
+    border-radius: 10px;
     color: var(--ink);
     font-family: var(--font-body);
     font-size: 12px;
